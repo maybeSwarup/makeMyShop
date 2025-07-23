@@ -1,0 +1,24 @@
+# Cursor Rule: No '@' Imports
+
+## Purpose
+
+This rule prohibits the use of '@' imports (e.g., import ... from '@/...') in the codebase to avoid ambiguity and potential issues with path resolution, tooling, or portability.
+
+---
+
+globs:
+
+- "src/\*_/_.ts"
+- "src/\*_/_.tsx"
+- "src/\*_/_.js"
+- "src/\*_/_.jsx"
+
+alwaysApply: true
+
+description: |
+Do not use '@' imports (e.g., import ... from '@/...') anywhere in the codebase. Use relative or absolute imports as configured in your project instead. This ensures clarity and compatibility across different tools and environments.
+description:
+globs:
+alwaysApply: false
+
+---

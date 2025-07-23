@@ -88,6 +88,6 @@ These rules must be followed by the AI assistant for any performance-related cha
 - [Next.js SEO & Lighthouse](https://nextjs.org/learn/seo/lighthouse)
   description:
   globs:
-  alwaysApply: false
+  alwaysApply: true
 
 ---

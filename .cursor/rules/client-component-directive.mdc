@@ -1,0 +1,31 @@
+# Cursor Rule: Client Component 'use client' Directive
+
+## Purpose
+
+This rule ensures that when creating or editing React components in the Next.js app directory, the assistant must always mention and add the 'use client' directive at the top of the file wherever it is necessary, according to Next.js best practices.
+
+---
+
+## When to Add 'use client'
+
+- Add 'use client' at the very top of the file (before any imports or code) if the component:
+  - Uses React hooks (e.g., useState, useEffect, useRef, useContext, etc.)
+  - Handles browser events (e.g., onClick, onChange, onSubmit, etc.)
+  - Accesses browser-only APIs (e.g., window, localStorage, navigator, etc.)
+  - Needs to run on the client for interactivity or browser-side logic
+- Do NOT add 'use client' to files that only use server-side logic, data fetching, or static rendering.
+- Only add 'use client' to the entry file of a client component tree; child components do not need the directive if they are only imported by a parent already marked as 'use client'.
+
+---
+
+globs:
+
+- "src/components/\*_/_.tsx"
+- "src/app/\*_/_.tsx"
+
+alwaysApply: false
+
+description: |
+Always mention and add the 'use client' directive at the top of the file when creating a component that requires client-side interactivity, state, or browser APIs. This ensures correct rendering boundaries and optimal performance in Next.js. See https://nextjs.org/docs/app/api-reference/directives/use-client for details.
+
+---
