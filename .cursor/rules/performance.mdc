@@ -1,0 +1,93 @@
+# Cursor Rule: Next.js PWA Performance Optimization
+
+## Purpose
+
+These rules must be followed by the AI assistant for any performance-related changes, reviews, or suggestions in this Next.js PWA project. They are designed to maintain and improve high Lighthouse scores and real-world user experience.
+
+---
+
+## General Principles
+
+- Prioritize performance, accessibility, best practices, and SEO in all code changes.
+- Always explain the performance impact of your suggestions.
+- Proactively identify and fix any code that could degrade performance.
+
+---
+
+## JavaScript & Main Thread
+
+- Minimize main-thread work: avoid heavy computations in the UI thread.
+- Use dynamic imports (`next/dynamic`) for non-critical or heavy components.
+- Remove unused code and dependencies.
+- Prefer lighter, tree-shakeable libraries over large third-party packages.
+- Enable and keep `swcMinify: true` in `next.config.js`.
+- Use Web Workers for heavy computations if needed.
+
+## Images & Media
+
+- Use the Next.js `<Image />` component for all images.
+- Always set explicit `width` and `height` to prevent layout shifts (CLS).
+- Use the `priority` prop for above-the-fold images (especially LCP).
+- Serve modern formats (WebP, AVIF) and use responsive `sizes` attributes.
+- Avoid large GIFs; use video or Lottie for animations.
+
+## Fonts
+
+- Use `next/font` for all custom fonts (Google or local).
+- Always use `display: swap` to avoid invisible text during load.
+- Limit the number of font weights/styles loaded.
+
+## Code Splitting & Lazy Loading
+
+- Use dynamic imports for client-only or rarely-used components.
+- Use skeleton loaders for content that loads asynchronously.
+- Only hydrate what’s necessary on the client.
+
+## Caching & Data Fetching
+
+- Use explicit Next.js caching strategies (`revalidate`, `tags`) for all fetches.
+- Prefer static generation (SSG) for content that doesn’t change often.
+- Use on-demand revalidation for dynamic content.
+- Leverage browser cache for static assets.
+
+## Service Worker & PWA
+
+- Register the service worker in a dedicated client component, not in `layout.tsx`.
+- Keep the service worker lean; avoid excessive caching of large or dynamic assets.
+- Test offline mode and update strategies regularly.
+
+## Back/Forward Cache (bfcache)
+
+- Avoid using `unload` event listeners or patterns that block bfcache.
+- Test bfcache using Chrome DevTools and Lighthouse.
+
+## Scripts
+
+- Use `<Script />` with the correct `strategy` (`afterInteractive`, `lazyOnload`, or `worker`) for third-party scripts.
+- Only load critical scripts before interactive; defer analytics and chat widgets.
+
+## Responsive & Mobile-First Design
+
+- Use responsive CSS frameworks (e.g., Tailwind CSS) and test on all device sizes.
+- Avoid fixed-width layouts and ensure touch targets are large enough.
+
+## Monitoring & Continuous Improvement
+
+- Use Vercel Analytics or similar to monitor real-user performance.
+- Run Lighthouse audits on production builds regularly, not just in development.
+
+---
+
+## References
+
+- [Minimize main thread work (Chrome Devs)](https://developer.chrome.com/docs/lighthouse/performance/mainthread-work-breakdown/?utm_source=lighthouse&utm_medium=devtools)
+- [Back/forward cache (bfcache) (Chrome Devs)](https://developer.chrome.com/docs/lighthouse/performance/bf-cache/?utm_source=lighthouse&utm_medium=devtools)
+- [Next.js 15 Speed Hacks: 7 Tweaks for a Perfect Lighthouse Score](https://contra.com/p/2NqWrgvo-nextjs-15-speed-hacks-7-tweaks-for-a-perfect-lighthouse-score)
+- [Optimizing Next.js Performance: Achieving Perfect Lighthouse Scores](https://dev.to/jnanadiw/optimizing-nextjs-performance-achieving-perfect-lighthouse-scores-24id)
+- [Next.js PWA Guide](https://nextjs.org/docs/app/building-your-application/configuring/progressive-web-apps)
+- [Next.js SEO & Lighthouse](https://nextjs.org/learn/seo/lighthouse)
+  description:
+  globs:
+  alwaysApply: false
+
+---
